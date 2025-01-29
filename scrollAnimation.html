@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NasirAhmed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+
+
+.counter-container{
+    background: linear-gradient(to right, #6a23c2, #ca61f3, #f1a1d0);
+  color:white;
+ 
+  }
+  .counter-container > * {
+    font-weight: bold;
+  }
+
+</style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" class="theme">
+    <div class="container-fluid text-light fw-bold  text-center display-1 counter-container  d-flex justify-content-center align-items-center" style="height: 100vh;">
+       
+        Scroll Animation
+      </div>
+    <div class="d-flex justify-content-around mt-5 text-center counter-container p-5 w-100">
+        <div class="counter mb-4">
+            <h1 id="meter-project" class="fs-1 fw-bold" aria-label="Project Complete counter">15</h1>
+            <p class="fs-6">Project Complete</p>
+        </div>
+        <div class="counter mb-4">
+            <h1 id="meter-client" class="fs-1 fw-bold" aria-label="Happy Clients counter">6</h1>
+            <p class="fs-6">Happy Clients</p>
+        </div>
+        <div class="counter mb-4">
+            <h1 id="meter-coffee" class="fs-1 fw-bold" aria-label="Cups of Coffee counter">13</h1>
+            <p class="fs-6">Cups of Coffee</p>
+        </div>
+        <div class="counter mb-4">
+            <h1 id="meter-professionals" class="fs-1 fw-bold" aria-label="Real Professionals counter">5</h1>
+            <p class="fs-6">Real Professionals</p>
+        </div>
+    </div>
+
+    <script>
+
+
+
+        let meters = document.querySelectorAll('#meter-project, #meter-professionals, #meter-coffee, #meter-client');
+        const maxValues = [15, 6, 13, 5];
+        let isCounting = false;
+        let plusstring = "+";
+        let meterdesign = meters.innerhtml = "<span>+</span>";
+        function startCounter() {
+            let count = 0;
+            const interval = setInterval(() => {
+                meters.forEach((meter, i) => meter.innerText = Math.min(count, maxValues[i]));
+                if (++count > Math.max(...maxValues)) clearInterval(interval);
+            }, 100);
+        }
+        window.addEventListener('scroll', () => {
+            if (!isCounting && meters[0].getBoundingClientRect().bottom < window.innerHeight) {
+                isCounting = true;
+                startCounter();
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
